@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C.V EMAD </title>
+    <title>السيرة الذاتية | عماد ال قاسم</title>
     
-    <!-- Google Fonts: Cairo for beautiful Arabic typography -->
+    <!-- Google Fonts: Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -19,18 +19,15 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] },
                     colors: {
                         brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81',
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            900: '#4c1d95',
                         }
                     }
                 }
@@ -41,466 +38,264 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f8fafc;
+            background-color: #f1f5f9;
+            background-image: radial-gradient(circle at top right, #e2e8f0 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        /* Accordion Animations */
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .accordion-content.is-open {
+            grid-template-rows: 1fr;
+        }
+        .accordion-inner {
+            overflow: hidden;
         }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .chevron-icon {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        .is-open .chevron-icon {
+            transform: rotate(180deg);
         }
 
-        /* Print Styles */
-        @media print {
-            body {
-                background-color: white;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .print-shadow-none {
-                box-shadow: none !important;
-                border: 1px solid #e2e8f0;
-            }
-            .print-break-inside-avoid {
-                page-break-inside: avoid;
-            }
-            .container {
-                max-width: 100% !important;
-                padding: 0 !important;
-            }
-            main {
-                margin: 0 !important;
-                gap: 1rem !important;
-            }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* حركات تفاعلية جديدة */
-        .skill-bar-fill {
-            animation: fillBar 1.5s ease-out forwards;
-            width: 0;
-        }
-        @keyframes fillBar {
-            to { width: var(--target-width); }
-        }
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+<body class="text-slate-800 antialiased selection:bg-brand-500 selection:text-white pb-12">
 
-    <!-- Floating Print Button -->
-    <button onclick="window.print()" class="no-print fixed bottom-6 left-6 bg-brand-600 text-white p-4 rounded-full shadow-lg hover:bg-brand-700 hover:scale-105 transition-all duration-300 z-50 flex items-center justify-center gap-2" title="طباعة / حفظ كـ PDF">
-        <i class="fas fa-print text-xl"></i>
-    </button>
-
-    <div class="container mx-auto max-w-5xl p-4 md:p-8">
+    <div class="container mx-auto max-w-3xl p-4 md:p-8 mt-4 md:mt-8">
         
-        <!-- Header / Hero Section -->
-        <header class="bg-white rounded-2xl shadow-sm print-shadow-none overflow-hidden mb-6 fade-in border border-slate-100 relative">
-            <div class="h-32 bg-gradient-to-r from-brand-700 to-brand-500"></div>
-            <div class="px-6 pb-8 md:px-10 relative">
-                <!-- Avatar Placeholder -->
-                <div class="absolute -top-16 left-1/2 -translate-x-1/2 md:translate-x-0 md:right-10 md:left-auto w-32 h-32 bg-white rounded-full border-4 border-white shadow-md flex items-center justify-center text-brand-500 text-5xl overflow-hidden">
-                    <i class="fas fa-user-tie"></i>
-                    <!-- يمكنك استبدال الأيقونة بصورتك الشخصية عن طريق إضافة وسم img هنا -->
-                    <!-- <img src="your-image-url.jpg" alt="Profile" class="w-full h-full object-cover"> -->
-                </div>
-                
-                <div class="pt-20 md:pt-20 flex flex-col md:flex-row md:justify-between md:items-start gap-4 text-center md:text-right">
-                    <div class="w-full">
-                        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">عماد ال قاسم</h1>
-                        <h2 class="text-lg md:text-xl text-brand-600 font-semibold mb-3">أخصائي إدخال بيانات</h2>
-                        
-                        <div class="mb-5 flex justify-center md:justify-start">
-                            <span class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 px-4 py-1.5 rounded-full text-sm font-bold border border-brand-200 shadow-sm">
-                                <i class="fas fa-briefcase text-brand-500"></i> أبحث عن عمل إضافي (مدخل بيانات)
-                            </span>
-                        </div>
+        <!-- Profile Card (Hero) -->
+        <header class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white p-8 text-center fade-in-up relative overflow-hidden z-10">
+            <!-- Decorative background elements -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-400/20 rounded-full blur-3xl -z-10"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-400/20 rounded-full blur-3xl -z-10"></div>
 
-                        <p class="text-slate-600 leading-relaxed max-w-3xl mx-auto md:mx-0 text-sm md:text-base">
-                            خريج تقنية معلومات، متخصص في إدخال البيانات وإدارتها بدقة متناهية وسرعة فائقة باللغتين (العربية والإنجليزية). محترف في استخدام حزمة مايكروسوفت أوفيس (Word, Excel)، وأمتلك القدرة على إنجاز كميات كبيرة من المهام المكتبية باحترافية عالية وفي وقت قياسي.
-                        </p>
-                    </div>
-                </div>
+            <div class="w-24 h-24 mx-auto bg-gradient-to-tr from-brand-600 to-brand-400 rounded-full flex items-center justify-center text-white text-3xl shadow-lg mb-5 relative">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            
+            <h1 class="text-3xl font-bold text-slate-800 mb-1">عماد ال قاسم</h1>
+            <h2 class="text-lg text-slate-500 font-semibold mb-5">تقنية معلومات | أعمال مكتبية</h2>
+            
+            <!-- Objective Badge -->
+            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-50 to-indigo-50 text-brand-700 px-5 py-2.5 rounded-2xl text-sm font-bold border border-brand-100 shadow-sm mb-6 transition-transform hover:scale-105">
+                <i class="fas fa-laptop-house text-brand-500 animate-pulse"></i>
+                أبحث عن عمل إضافي عن بعد (مدخل بيانات)
+            </div>
 
-                <!-- Contact Info Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-6 border-t border-slate-100">
-                    <a href="mailto:emadalqassim1@gmail.com" class="flex items-center gap-3 text-slate-600 hover:text-brand-600 transition-colors">
-                        <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 shrink-0">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <span class="text-sm font-medium" dir="ltr">emadalqassim1@gmail.com</span>
-                    </a>
-                    <a href="tel:+966509692294" class="flex items-center gap-3 text-slate-600 hover:text-brand-600 transition-colors">
-                        <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 shrink-0">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <span class="text-sm font-medium" dir="ltr">+966 50 969 2294</span>
-                    </a>
-                    <div class="flex items-center gap-3 text-slate-600">
-                        <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 shrink-0">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <span class="text-sm font-medium">اليمن - إب</span>
-                    </div>
-                    <a href="https://www.behance.net/emadalqassim" target="_blank" class="flex items-center gap-3 text-slate-600 hover:text-brand-600 transition-colors">
-                        <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center text-brand-600 shrink-0">
-                            <i class="fab fa-behance"></i>
-                        </div>
-                        <span class="text-sm font-medium" dir="ltr">emadalqassim</span>
-                    </a>
-                </div>
+            <!-- Quick Contacts -->
+            <div class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm text-slate-500">
+                <a href="mailto:emadalqassim1@gmail.com" class="flex items-center gap-2 hover:text-brand-600 transition-colors">
+                    <i class="fas fa-envelope text-brand-400"></i> emadalqassim1@gmail.com
+                </a>
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-map-marker-alt text-brand-400"></i> اليمن - إب
+                </span>
+                <a href="https://www.behance.net/emadalqassim" target="_blank" class="flex items-center gap-2 hover:text-brand-600 transition-colors">
+                    <i class="fab fa-behance text-brand-400"></i> Behance
+                </a>
             </div>
         </header>
 
-        <!-- Main Content Layout -->
-        <main class="flex flex-col lg:flex-row gap-6">
+        <!-- Brief Summary -->
+        <div class="text-center my-8 fade-in-up" style="animation-delay: 0.1s;">
+            <p class="text-slate-500 text-sm md:text-base leading-relaxed px-4">
+                خريج تقنية معلومات، مستعد لإنجاز المهام المكتبية وإدخال ومعالجة البيانات بدقة متناهية وسرعة فائقة.
+            </p>
+        </div>
+
+        <!-- Interactive Sections (Accordions) -->
+        <div class="space-y-4">
             
-            <!-- Right Column (Main Info) -->
-            <div class="w-full lg:w-2/3 space-y-6">
-                
-                <!-- Experience -->
-                <section class="bg-white p-6 md:p-8 rounded-2xl shadow-sm print-shadow-none border border-slate-100 fade-in hover-lift print-break-inside-avoid">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 text-xl group-hover:scale-110 transition-transform">
+            <!-- Section 1: Experience -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100/50 overflow-hidden fade-in-up hover:border-brand-200 transition-colors" style="animation-delay: 0.2s;">
+                <button onclick="toggleAccordion('exp')" class="w-full px-6 py-5 flex justify-between items-center text-right focus:outline-none group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
                             <i class="fas fa-briefcase"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-800">الخبرات العملية</h3>
-                    </div>
-                    
-                    <div class="relative border-r-2 border-brand-200 pr-6 space-y-8">
-                        <div class="relative hover:bg-slate-50 p-4 rounded-xl transition-colors -mr-4 border border-transparent hover:border-slate-100">
-                            <div class="absolute w-4 h-4 bg-brand-500 rounded-full -right-[25px] top-5 border-4 border-white shadow-sm"></div>
-                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                                <h4 class="text-xl font-bold text-slate-800">أخصائي إدخال بيانات</h4>
-                                <span class="text-brand-600 font-semibold bg-brand-50 px-3 py-1 rounded-full text-sm mt-2 md:mt-0 w-fit">2020 - 2023</span>
-                            </div>
-                            <h5 class="text-lg text-slate-600 font-semibold mb-3">مركز النجاح للطباعة وخدمات الكمبيوتر</h5>
-                            <ul class="list-none space-y-3 text-slate-600 text-sm md:text-base">
-                                <li class="flex items-start gap-3 hover:text-brand-600 transition-colors">
-                                    <div class="mt-1 bg-brand-100 text-brand-500 rounded-full w-6 h-6 flex items-center justify-center shrink-0"><i class="fas fa-keyboard text-xs"></i></div>
-                                    <span>إدخال البيانات ومعالجتها بسرعة فائقة ودقة متناهية باستخدام برامج مايكروسوفت أوفيس.</span>
-                                </li>
-                                <li class="flex items-start gap-3 hover:text-brand-600 transition-colors">
-                                    <div class="mt-1 bg-brand-100 text-brand-500 rounded-full w-6 h-6 flex items-center justify-center shrink-0"><i class="fas fa-language text-xs"></i></div>
-                                    <span>طباعة النصوص والبيانات باللغتين (العربية والإنجليزية) بسرعات عالية مع ضمان خلوها من الأخطاء.</span>
-                                </li>
-                                <li class="flex items-start gap-3 hover:text-brand-600 transition-colors">
-                                    <div class="mt-1 bg-brand-100 text-brand-500 rounded-full w-6 h-6 flex items-center justify-center shrink-0"><i class="fas fa-table text-xs"></i></div>
-                                    <span>إعداد وتصميم الجداول الإحصائية والكشوفات المتقدمة باستخدام برنامج Excel.</span>
-                                </li>
-                            </ul>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg">الخبرة العملية</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">مركز النجاح للطباعة (2020 - 2023)</p>
                         </div>
                     </div>
-                </section>
+                    <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-50 group-hover:text-brand-500 transition-colors">
+                        <i id="icon-exp" class="fas fa-chevron-down chevron-icon text-sm"></i>
+                    </div>
+                </button>
+                <div id="content-exp" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="px-6 pb-6 pt-2">
+                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                                <ul class="space-y-3 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check text-brand-400 mt-1"></i>
+                                        <span>إدخال البيانات ومعالجتها بسرعة فائقة باستخدام برامج مايكروسوفت أوفيس.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check text-brand-400 mt-1"></i>
+                                        <span>طباعة النصوص باللغتين العربية والإنجليزية بدقة عالية وبدون أخطاء.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check text-brand-400 mt-1"></i>
+                                        <span>إعداد الكشوفات والجداول الإحصائية وتنسيق الملفات المكتبية.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Education & Diplomas -->
-                <section class="bg-white p-6 md:p-8 rounded-2xl shadow-sm print-shadow-none border border-slate-100 fade-in print-break-inside-avoid">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 text-xl">
+            <!-- Section 2: Skills -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100/50 overflow-hidden fade-in-up hover:border-brand-200 transition-colors" style="animation-delay: 0.3s;">
+                <button onclick="toggleAccordion('skills')" class="w-full px-6 py-5 flex justify-between items-center text-right focus:outline-none group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg">أبرز المهارات</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">سرعة طباعة، أوفيس، دقة الإنجاز</p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-50 group-hover:text-brand-500 transition-colors">
+                        <i id="icon-skills" class="fas fa-chevron-down chevron-icon text-sm"></i>
+                    </div>
+                </button>
+                <div id="content-skills" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="px-6 pb-6 pt-2 grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center gap-3">
+                                <i class="fas fa-keyboard text-brand-500 text-lg"></i>
+                                <span class="text-sm font-semibold text-slate-700">سرعة طباعة (عربي/إنجليزي)</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center gap-3">
+                                <i class="fab fa-microsoft text-brand-500 text-lg"></i>
+                                <span class="text-sm font-semibold text-slate-700">احتراف مايكروسوفت أوفيس</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center gap-3">
+                                <i class="fas fa-search text-brand-500 text-lg"></i>
+                                <span class="text-sm font-semibold text-slate-700">دقة الملاحظة والمراجعة</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center gap-3">
+                                <i class="fas fa-clock text-brand-500 text-lg"></i>
+                                <span class="text-sm font-semibold text-slate-700">إدارة الوقت وسرعة الإنجاز</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Education & Diplomas -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100/50 overflow-hidden fade-in-up hover:border-brand-200 transition-colors" style="animation-delay: 0.4s;">
+                <button onclick="toggleAccordion('edu')" class="w-full px-6 py-5 flex justify-between items-center text-right focus:outline-none group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-800">التعليم الأكاديمي والدبلومات</h3>
-                    </div>
-
-                    <!-- Degree -->
-                    <div class="mb-8 border-b border-slate-100 pb-6">
-                        <h4 class="text-xl font-bold text-slate-800 mb-1">بكالوريوس تقنية معلومات</h4>
-                        <div class="flex justify-between items-center text-slate-600">
-                            <span>كلية الحاسبات وتقنية المعلومات - جامعة إب</span>
-                            <span class="text-brand-600 font-semibold text-sm bg-brand-50 px-3 py-1 rounded-full">2020 - 2024</span>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg">التعليم والدبلومات</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">بكالوريوس IT + دبلومات مهنية</p>
                         </div>
                     </div>
-
-                    <!-- Diplomas List -->
-                    <h5 class="text-lg font-bold text-slate-700 mb-4 flex items-center gap-2">
-                        <i class="fas fa-certificate text-brand-500"></i> الدبلومات المهنية
-                    </h5>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
-                            <div>
-                                <h6 class="font-bold text-slate-800">دبلوم المحاسبة المالي</h6>
-                                <p class="text-sm text-slate-500">مركز التدريب والتأهيل - جامعة صنعاء</p>
+                    <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-50 group-hover:text-brand-500 transition-colors">
+                        <i id="icon-edu" class="fas fa-chevron-down chevron-icon text-sm"></i>
+                    </div>
+                </button>
+                <div id="content-edu" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="px-6 pb-6 pt-2 space-y-4">
+                            <!-- Degree -->
+                            <div class="bg-brand-50/50 p-4 rounded-xl border border-brand-100">
+                                <h4 class="font-bold text-slate-800 mb-1">بكالوريوس تقنية معلومات</h4>
+                                <p class="text-sm text-slate-500">جامعة إب (2020 - 2024)</p>
                             </div>
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">2023 - 2024</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
-                            <div>
-                                <h6 class="font-bold text-slate-800">دبلوم لغة إنجليزية</h6>
-                                <p class="text-sm text-slate-500">مركز اللغات - جامعة إب</p>
+                            <!-- Diplomas -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-600">
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100"><i class="fas fa-certificate text-brand-300 mr-2"></i> دبلوم المحاسبة المالي</div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100"><i class="fas fa-certificate text-brand-300 mr-2"></i> دبلوم الرخصة الدولية (ICDL)</div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100"><i class="fas fa-certificate text-brand-300 mr-2"></i> دبلوم لغة إنجليزية</div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100"><i class="fas fa-certificate text-brand-300 mr-2"></i> دبلومات فنية (هواتف، جرافيكس)</div>
                             </div>
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">2018 - 2019</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
-                            <div>
-                                <h6 class="font-bold text-slate-800">دبلوم الرخصة الدولية (ICDL)</h6>
-                                <p class="text-sm text-slate-500">معهد بوسطن - إب</p>
-                            </div>
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">2018 - 2019</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
-                            <div>
-                                <h6 class="font-bold text-slate-800">دبلوم برمجة وصيانة الهواتف المحمولة</h6>
-                                <p class="text-sm text-slate-500">مؤسسة الحمدي - إب</p>
-                            </div>
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">2017 - 2018</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
-                            <div>
-                                <h6 class="font-bold text-slate-800">دبلوم جرافيكس ومونتاج</h6>
-                                <p class="text-sm text-slate-500">مؤسسة يمن داتا - إب</p>
-                            </div>
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">2017 - 2018</span>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
 
-                <!-- Training Courses -->
-                <section class="bg-white p-6 md:p-8 rounded-2xl shadow-sm print-shadow-none border border-slate-100 fade-in hover-lift print-break-inside-avoid">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 text-xl">
+            <!-- Section 4: Courses -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100/50 overflow-hidden fade-in-up hover:border-brand-200 transition-colors" style="animation-delay: 0.5s;">
+                <button onclick="toggleAccordion('courses')" class="w-full px-6 py-5 flex justify-between items-center text-right focus:outline-none group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
                             <i class="fas fa-award"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-800">الدورات التدريبية</h3>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">صناعة المحتوى</h4>
-                                <span class="text-xs text-brand-600 font-semibold">10/2024</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">شركة بن غانم ويب</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 3.5 ساعات</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">التسويق الرقمي</h4>
-                                <span class="text-xs text-brand-600 font-semibold">10/2024</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">Digital Markt</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 4 ساعات</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800 text-sm">توظيف الذكاء الاصطناعي</h4>
-                                <span class="text-xs text-brand-600 font-semibold">06/2024</span>
-                            </div>
-                            <p class="text-xs text-slate-600 mb-2">أكاديمية علوم الدولية</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> ساعتان</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800 text-sm">أتمتة البحث العلمي بالذكاء الاصطناعي</h4>
-                                <span class="text-xs text-brand-600 font-semibold">06/2024</span>
-                            </div>
-                            <p class="text-xs text-slate-600 mb-2">أكاديمية علوم الدولية</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> ساعتان</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800 text-sm">التقنية في تنسيق البحوث العلمية</h4>
-                                <span class="text-xs text-brand-600 font-semibold">01/2024</span>
-                            </div>
-                            <p class="text-xs text-slate-600 mb-2">أكاديمية علوم الدولية</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> ساعتان</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800 text-sm">الأخطاء الشائعة بكتابة البحوث</h4>
-                                <span class="text-xs text-brand-600 font-semibold">02/2024</span>
-                            </div>
-                            <p class="text-xs text-slate-600 mb-2">أكاديمية علوم الدولية</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> ساعتان</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">أساسيات الانفوجرافيك</h4>
-                                <span class="text-xs text-brand-600 font-semibold">11/2018</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">مؤسسة يمن داتا</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 6 ساعات</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">أسس بناء التصميم والعلامة التجارية</h4>
-                                <span class="text-xs text-brand-600 font-semibold">12/2018</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">مؤسسة يمن داتا</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 4 ساعات</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">إنشاء وإدارة قناة اليوتيوب</h4>
-                                <span class="text-xs text-brand-600 font-semibold">12/2018</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">مؤسسة يمن داتا</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 4 ساعات</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">أساسيات التصوير الفوتوغرافي</h4>
-                                <span class="text-xs text-brand-600 font-semibold">12/2018</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">مؤسسة يمن داتا</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 6 ساعات</div>
-                        </div>
-                        <!-- Course Item -->
-                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all md:col-span-2">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-slate-800">الإسعافات الأولية</h4>
-                                <span class="text-xs text-brand-600 font-semibold">02/2017</span>
-                            </div>
-                            <p class="text-sm text-slate-600 mb-2">Physical Organization for Healthy Education</p>
-                            <div class="text-xs text-slate-500 bg-slate-200 inline-block px-2 py-1 rounded"><i class="far fa-clock mr-1"></i> 25 ساعة</div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg">دورات تدريبية مكثفة</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">+10 دورات في التقنية والأتمتة</p>
                         </div>
                     </div>
-                </section>
+                    <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-50 group-hover:text-brand-500 transition-colors">
+                        <i id="icon-courses" class="fas fa-chevron-down chevron-icon text-sm"></i>
+                    </div>
+                </button>
+                <div id="content-courses" class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="px-6 pb-6 pt-2">
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">أتمتة المهام بالذكاء الاصطناعي</span>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">صناعة المحتوى الرقمي</span>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">توظيف التقنية لتنسيق الملفات</span>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">أساسيات التصميم والانفوجرافيك</span>
+                                <span class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">الإسعافات الأولية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Left Column (Sidebar Info) -->
-            <div class="w-full lg:w-1/3 space-y-6">
-                
-                <!-- Technical Skills -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm print-shadow-none border border-slate-100 fade-in hover-lift print-break-inside-avoid">
-                    <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 text-lg">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">المهارات التقنية</h3>
-                    </div>
-                    
-                    <div class="space-y-5">
-                        <div class="group">
-                            <div class="flex justify-between mb-1 items-center">
-                                <span class="font-bold text-slate-700 flex items-center gap-2"><i class="fab fa-microsoft text-brand-500"></i> مايكروسوفت أوفيس (Word, Excel)</span>
-                                <span class="text-sm font-bold text-brand-600 group-hover:scale-110 transition-transform">95%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-2.5 rounded-full skill-bar-fill" style="--target-width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="group">
-                            <div class="flex justify-between mb-1 items-center">
-                                <span class="font-bold text-slate-700 flex items-center gap-2"><i class="fas fa-keyboard text-brand-500"></i> سرعة الطباعة باللغتين (عربي/إنجليزي)</span>
-                                <span class="text-sm font-bold text-brand-600 group-hover:scale-110 transition-transform">98%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-2.5 rounded-full skill-bar-fill" style="--target-width: 98%"></div>
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <div class="flex justify-between mb-1 items-center">
-                                <span class="font-bold text-slate-700 flex items-center gap-2"><i class="fas fa-check-double text-brand-500"></i> مراجعة وتدقيق البيانات</span>
-                                <span class="text-sm font-bold text-brand-600 group-hover:scale-110 transition-transform">90%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-2.5 rounded-full skill-bar-fill" style="--target-width: 90%"></div>
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <div class="flex justify-between mb-1 items-center">
-                                <span class="font-bold text-slate-700 flex items-center gap-2"><i class="fas fa-robot text-brand-500"></i> أدوات الذكاء الاصطناعي والأتمتة</span>
-                                <span class="text-sm font-bold text-brand-600 group-hover:scale-110 transition-transform">85%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-2.5 rounded-full skill-bar-fill" style="--target-width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Personal Skills -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm print-shadow-none border border-slate-100 fade-in hover-lift print-break-inside-avoid" style="animation-delay: 0.2s;">
-                    <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 text-lg">
-                            <i class="fas fa-user-check"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">المهارات الشخصية</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-brand-50 text-brand-700 px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1 hover:bg-brand-500 hover:text-white transition-colors cursor-default"><i class="fas fa-clock"></i> إدارة الوقت</span>
-                        <span class="bg-brand-50 text-brand-700 px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1 hover:bg-brand-500 hover:text-white transition-colors cursor-default"><i class="fas fa-eye"></i> دقة الملاحظة</span>
-                        <span class="bg-brand-50 text-brand-700 px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1 hover:bg-brand-500 hover:text-white transition-colors cursor-default"><i class="fas fa-bolt"></i> التعلم السريع</span>
-                        <span class="bg-brand-50 text-brand-700 px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1 hover:bg-brand-500 hover:text-white transition-colors cursor-default"><i class="fas fa-tasks"></i> إنجاز المهام المتعددة</span>
-                    </div>
-                </section>
-
-                <!-- Languages -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm print-shadow-none border border-slate-100 fade-in hover-lift print-break-inside-avoid" style="animation-delay: 0.3s;">
-                    <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 text-lg">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">اللغات</h3>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="group">
-                            <div class="flex justify-between mb-1 items-center">
-                                <span class="font-bold text-slate-700">العربية (كتابة وتحدث)</span>
-                                <span class="text-sm font-bold text-brand-600 group-hover:scale-110 transition-transform">ممتاز</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-2.5 rounded-full skill-bar-fill" style="--target-width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="group">
-                            <div class="flex justify-between mb-1 items-center">
-                                <span class="font-bold text-slate-700">الإنجليزية (كتابة وتحدث)</span>
-                                <span class="text-sm font-bold text-brand-600 group-hover:scale-110 transition-transform">جيد</span>
-                            </div>
-                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-400 to-brand-600 h-2.5 rounded-full skill-bar-fill" style="--target-width: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-        </main>
-        
-        <footer class="text-center mt-8 pb-4 text-slate-500 text-sm no-print">
-            تم تصميم هذه السيرة الذاتية لـ عماد ال قاسم &copy; 2026
-        </footer>
+        </div>
     </div>
 
+    <!-- Script for interactive accordions -->
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            // Toggle current
+            if (content.classList.contains('is-open')) {
+                content.classList.remove('is-open');
+                icon.parentElement.parentElement.classList.remove('is-open');
+            } else {
+                // Close all others first (Optional: remove this block if you want multiple open at once)
+                document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('is-open'));
+                document.querySelectorAll('.group').forEach(el => el.classList.remove('is-open'));
+                
+                // Open clicked
+                content.classList.add('is-open');
+                icon.parentElement.parentElement.classList.add('is-open');
+            }
+        }
+    </script>
 </body>
 </html>
